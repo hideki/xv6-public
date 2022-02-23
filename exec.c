@@ -60,6 +60,9 @@ exec(char *path, char **argv)
   end_op();
   ip = 0;
 
+  // Make page table 0 not accessble by user
+  clearpteu(pgdir, (char*)0x0);
+
   // Allocate two pages at the next page boundary.
   // Make the first inaccessible.  Use the second as the user stack.
   sz = PGROUNDUP(sz);
